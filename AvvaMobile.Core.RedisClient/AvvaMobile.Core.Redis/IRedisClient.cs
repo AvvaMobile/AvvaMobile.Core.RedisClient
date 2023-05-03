@@ -12,8 +12,8 @@ public interface IRedisClient
     Task<int> Int_Get(string key);
     Task<bool> Int_Set(string key, int value);
 
-    Task<T> List_Deserialize_Get<T>(string key);
-    Task<bool> List_Serialize_Set(string key, object value);
+    Task<T> Deserialize_Get<T>(string key);
+    Task<bool> Serialize_Set(string key, object value);
     
     Task<List<SelectListItem>> List_SelectListItem_Get(string key);
     Task<bool> List_SelectListItem_Set(string key, List<SelectListItem> value);

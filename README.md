@@ -111,22 +111,22 @@ var key = "Turkiye";
 var countryCode = await _redis.Int_Get(key);
 ```
 
-## Set List (Serialized)
+## Serialized Set
 
 ``` csharp
 var key = "foo";
 var value = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 };
 
-var result = await _redis.List_Serialize_Set(key, value);
+var result = await _redis.Serialize_Set(key, value);
 
 ```
 
-## Get List (Deserialized)
+## Deserialized Get
 
 ``` csharp
 var key = "foo";
 
-var valueList = await _redis.List_Deserialize_Get<List<int>>(key);
+var valueList = await _redis.Deserialize_Get<List<int>>(key);
 ```
 
 ## Set List of Select List Items (Web)

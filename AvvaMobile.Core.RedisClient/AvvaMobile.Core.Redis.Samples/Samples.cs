@@ -57,19 +57,19 @@ public class Samples
         var countryCode = await _redis.Int_Get(key);
     }
 
-    public async Task List_Serialize_Set()
+    public async Task Serialize_Set()
     {
         var key = "foo";
         var value = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 };
 
-        var result = await _redis.List_Serialize_Set(key, value);
+        var result = await _redis.Serialize_Set(key, value);
     }
 
-    public async Task List_Deserialize_Get()
+    public async Task Deserialize_Get()
     {
         var key = "foo";
 
-        var valueList = await _redis.List_Deserialize_Get<List<int>>(key);
+        var valueList = await _redis.Deserialize_Get<List<int>>(key);
     }
     
     public async Task List_SelectListItem_Set()

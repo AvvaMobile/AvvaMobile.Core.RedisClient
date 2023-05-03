@@ -48,12 +48,12 @@ public class RedisClient : IRedisClient
     #endregion
 
     #region Generic Methods
-    public async Task<T> List_Deserialize_Get<T>(string key)
+    public async Task<T> Deserialize_Get<T>(string key)
     {
         return JsonSerializer.Deserialize<T>(await _redis.GetDatabase().StringGetAsync(key));
     }
 
-    public async Task<bool> List_Serialize_Set(string key, object value)
+    public async Task<bool> Serialize_Set(string key, object value)
     {
         return await String_Set(key, JsonSerializer.Serialize(value));
     }
@@ -62,12 +62,12 @@ public class RedisClient : IRedisClient
     #region SelectListItems Methods
     public async Task<List<SelectListItem>> List_SelectListItem_Get(string key)
     {
-        return await List_Deserialize_Get<List<SelectListItem>>(key);
+        return await Deserialize_Get<List<SelectListItem>>(key);
     }
 
     public async Task<bool> List_SelectListItem_Set(string key, List<SelectListItem> value)
     {
-        return await List_Serialize_Set(key, JsonSerializer.Serialize(value));
+        return await Serialize_Set(key, JsonSerializer.Serialize(value));
     }
     #endregion
 
