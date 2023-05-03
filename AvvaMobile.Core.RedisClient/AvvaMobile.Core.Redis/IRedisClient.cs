@@ -17,7 +17,11 @@ public interface IRedisClient
     
     Task<List<SelectListItem>> List_SelectListItem_Get(string key);
     Task<bool> List_SelectListItem_Set(string key, List<SelectListItem> value);
-    
+
+    Task<T> GetOrAddAsync<T>(string key, Func<Task<T>> action) where T : class;
+    Task Clear(string key);
+    void ClearAll();
+
     Task List_Add(string key, List<string> values);
     Task List_Add(string key, List<int> values);
     Task List_Add(string key, List<bool> values);
