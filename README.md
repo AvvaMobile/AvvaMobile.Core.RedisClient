@@ -51,8 +51,6 @@ public class Samples
     {
         _redis = redis;
     }
-    
-    ...
 }
 ```
 
@@ -75,14 +73,13 @@ else
 }
 ```
 
-## Set String
+## Set Value
 
 ``` csharp
 var key = "foo";
-var value = "bar";
+var valueString = "bar";
 
-var result = await _redis.String_Set(key, value);
-
+var resultString = await _redis.Set(key, valueString);
 ```
 
 ## Get String
@@ -90,46 +87,27 @@ var result = await _redis.String_Set(key, value);
 ``` csharp
 var key = "foo";
 
-var stringValue = await _redis.String_Get(key);
+var stringValue = await _redis.Get_String(key);
 ```
 
-## Set Int
-
-``` csharp
-var key = "Turkiye";
-var countryCode = 90;
-
-var result = await _redis.Int_Set(key, countryCode);
-
-```
-
-## Get Int
-
-``` csharp
-var key = "Turkiye";
-
-var countryCode = await _redis.Int_Get(key);
-```
-
-## Serialized Set
+## Set Serialized
 
 ``` csharp
 var key = "foo";
 var value = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 };
 
-var result = await _redis.Serialize_Set(key, value);
-
+var result = await _redis.Set_Serialized(key, value);
 ```
 
-## Deserialized Get
+## Get Deserialized
 
 ``` csharp
 var key = "foo";
 
-var valueList = await _redis.Deserialize_Get<List<int>>(key);
+var valueList = await _redis.Get_Deserialized<List<int>>(key);
 ```
 
-## Set List of Select List Items (Web)
+## Set Select List Items (for Web)
 
 ``` csharp
 var key = "foo";
@@ -141,14 +119,14 @@ var value = new List<SelectListItem>
     new SelectListItem{Text = "Item 4", Value = "4"}
 };
 
-var result = await _redis.List_SelectListItem_Set(key, value);
+var result = await _redis.Set_SelectListItems(key, value);
 
 ```
 
-## Get List of Select List Items (Web)
+## Get Select List Items (for Web)
 
 ``` csharp
 var key = "foo";
 
-var valueList = await _redis.List_SelectListItem_Get(key);
+var valueList = await _redis.Get_SelectListItems(key);
 ```

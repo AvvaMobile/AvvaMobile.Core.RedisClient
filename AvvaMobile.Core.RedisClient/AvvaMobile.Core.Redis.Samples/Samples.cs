@@ -11,7 +11,7 @@ public class Samples
         _redis = redis;
     }
 
-    public async Task CheckIsExists()
+    public async Task IsExists()
     {
         var key = "foo";
 
@@ -27,52 +27,45 @@ public class Samples
         }
     }
 
-    public async Task StringSet()
+    public async Task Set()
     {
         var key = "foo";
         var value = "bar";
 
-        var result = await _redis.String_Set(key, value);
+        var result = await _redis.Set(key, value);
+    }
+    
+    public async Task SetWithTTL()
+    {
+        var key = "foo";
+        var value = "bar";
+
+        var result = await _redis.Set(key, value, TimeSpan.FromHours(1));
     }
 
-    public async Task StringGet()
+    public async Task Get()
     {
         var key = "foo";
 
-        var stringValue = await _redis.String_Get(key);
+        var stringValue = await _redis.Get_String(key);
     }
 
-    public async Task IntSet()
-    {
-        var key = "Turkiye";
-        var countryCode = 90;
-
-        var result = await _redis.Int_Set(key, countryCode);
-    }
-
-    public async Task IntGet()
-    {
-        var key = "Turkiye";
-
-        var countryCode = await _redis.Int_Get(key);
-    }
-
-    public async Task Serialize_Set()
+    public async Task Set_Serialized()
     {
         var key = "foo";
         var value = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 };
 
-        var result = await _redis.Serialize_Set(key, value);
+        var result = await _redis.Set_Serialized(key, value);
     }
 
-    public async Task Deserialize_Get()
+    public async Task Get_Deserialized()
     {
         var key = "foo";
 
-        var valueList = await _redis.Deserialize_Get<List<int>>(key);
+        var valueList = await _redis.Get_Deserialized<List<int>>(key);
     }
     
-    public async Task List_SelectListItem_Set()
+    public async Task Set_SelectListItems()
     {
         var key = "foo";
         var value = new List<SelectListItem>
@@ -83,13 +76,13 @@ public class Samples
             new SelectListItem{Text = "Item 4", Value = "4"}
         };
 
-        var result = await _redis.List_SelectListItem_Set(key, value);
+        var result = await _redis.Set_SelectListItems(key, value);
     }
 
-    public async Task List_SelectListItem_Get()
+    public async Task Get_SelectListItems()
     {
         var key = "foo";
 
-        var valueList = await _redis.List_SelectListItem_Get(key);
+        var valueList = await _redis.Get_SelectListItems(key);
     }
 }
