@@ -130,3 +130,17 @@ var key = "foo";
 
 var valueList = await _redis.Get_SelectListItems(key);
 ```
+
+## Remove a Key
+
+``` csharp
+var key = "foo";
+
+await _redis.Remove(key);
+```
+
+## Clear Database
+
+``` csharp
+await _redis.ClearAll();
+```

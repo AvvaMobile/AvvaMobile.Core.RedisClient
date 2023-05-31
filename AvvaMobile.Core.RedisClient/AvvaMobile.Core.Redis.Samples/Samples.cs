@@ -34,7 +34,7 @@ public class Samples
 
         var result = await _redis.Set(key, value);
     }
-    
+
     public async Task SetWithTTL()
     {
         var key = "foo";
@@ -64,25 +64,31 @@ public class Samples
 
         var valueList = await _redis.Get_Deserialized<List<int>>(key);
     }
-    
+
     public async Task Set_SelectListItems()
     {
         var key = "foo";
         var value = new List<SelectListItem>
         {
-            new SelectListItem{Text = "Item 1", Value = "1"},
-            new SelectListItem{Text = "Item 2", Value = "2"},
-            new SelectListItem{Text = "Item 3", Value = "3"},
-            new SelectListItem{Text = "Item 4", Value = "4"}
+            new SelectListItem { Text = "Item 1", Value = "1" },
+            new SelectListItem { Text = "Item 2", Value = "2" },
+            new SelectListItem { Text = "Item 3", Value = "3" },
+            new SelectListItem { Text = "Item 4", Value = "4" }
         };
 
         var result = await _redis.Set_SelectListItems(key, value);
     }
 
-    public async Task Get_SelectListItems()
+
+    public async Task Remove()
     {
         var key = "foo";
 
-        var valueList = await _redis.Get_SelectListItems(key);
+        await _redis.Remove(key);
+    }
+
+    public async Task ClearAll()
+    {
+        await _redis.ClearAll();
     }
 }

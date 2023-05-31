@@ -1,7 +1,6 @@
 ﻿using StackExchange.Redis;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace AvvaMobile.Core.Redis;
 
@@ -94,4 +93,19 @@ public class RedisClient : IRedisClient
         await Add_List(key, values.Select(x => x.ToString()).ToList());
     }
     #endregion
+    
+    public async Task Remove(string key)
+    {
+        await _redis.GetDatabase().KeyDeleteAsync(key);
+    }
+    
+    public async Task ClearAll()
+    {
+        var endpoints = _redis.GetEndPoints();
+        foreach (var endpoint in endpoints)
+        {
+            var server = _redis.GetServer(endpoint);
+            await server.FlushDatabaseAsync();
+        }
+    }
 }
