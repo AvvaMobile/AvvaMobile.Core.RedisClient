@@ -13,7 +13,7 @@
 		<RunAnalyzersDuringBuild>False</RunAnalyzersDuringBuild>
 		<RunAnalyzersDuringLiveAnalysis>False</RunAnalyzersDuringLiveAnalysis>
 		<EnableNETAnalyzers>False</EnableNETAnalyzers>
-		<Version>1.0.8</Version>
+		<Version>1.0.9</Version>
 		<PackageIcon>avvamobile.png</PackageIcon>
 		<Description>This package helps to .Net developers to connect and use Redis easly. You can use C# types to store and retrieve data.</Description>
 		<Copyright>Avva Mobile Enterprise Solutions</Copyright>
