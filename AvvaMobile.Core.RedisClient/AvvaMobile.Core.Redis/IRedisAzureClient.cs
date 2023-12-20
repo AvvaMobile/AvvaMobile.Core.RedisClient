@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AvvaMobile.Core.Redis;
 
-public interface IRedisClient
+public interface IRedisAzureClient
 {
     Task<bool> IsExists(string key);
 
@@ -27,5 +27,4 @@ public interface IRedisClient
     Task ClearAll();
 
     Task<T> GetOrAddAsync<T>(string key, Func<Task<T>> action) where T : class;
-
 }
