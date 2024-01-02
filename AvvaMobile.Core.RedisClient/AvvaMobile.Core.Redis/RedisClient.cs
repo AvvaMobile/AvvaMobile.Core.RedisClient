@@ -1,6 +1,6 @@
 ﻿using StackExchange.Redis;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Text.Json;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AvvaMobile.Core.Redis;
 
@@ -8,18 +8,10 @@ public class RedisClient : IRedisClient
 {
     private static ConnectionMultiplexer _redisConn;
     private readonly IDatabase _cache;
-    public RedisClient(string host, int port, string user, string password)
+    public RedisClient(string connectionString)
     {
-        _redisConn = ConnectionMultiplexer.Connect(
-            new ConfigurationOptions
-            {
-                EndPoints = { { host, port } },
-                User = user,
-                Password = password
-            });
-
+        _redisConn = ConnectionMultiplexer.Connect(connectionString);
         _cache = _redisConn.GetDatabase();
-
     }
 
     public async Task<bool> IsExists(string key)
@@ -30,7 +22,7 @@ public class RedisClient : IRedisClient
     #region Set Methods
     public async Task<bool> Set(string key, string value)
     {
-        return await _cache.StringSetAsync(key,value);
+        return await _cache.StringSetAsync(key, value);
     }
 
     public async Task<bool> Set(string key, string value, TimeSpan expiry)
@@ -129,5 +121,4 @@ public class RedisClient : IRedisClient
         await Add_List(key, values.Select(x => x.ToString()).ToList());
     }
     #endregion
-    
 }
